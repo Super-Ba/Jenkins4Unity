@@ -24,7 +24,14 @@ BUILDS_GOOGLEDRIVE_PATH = config['PATH']['googleDrivePath']
 
 # .zip 파일이 아닌 가장 최신의 파일을 찾아 압축하고 원래 폴더 삭제
 
-target = sorted(os.listdir(BUILDS_PATH), reverse=True)[0]
+fileList = []
+
+for fileName in os.listdir(BUILDS_PATH):
+    cTime = os.path.getctime(f"{BUILDS_PATH}{fileName}")
+    fileList.append((fileName, cTime))
+
+
+target = sorted(fileList, key=lambda x: x[1], reverse=True)[0][0]
 
 if '.zip' in target:
     print("압축 파일이 이미 존재합니다. : " + target)
