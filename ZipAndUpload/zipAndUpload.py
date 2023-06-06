@@ -80,7 +80,7 @@ try:
     service = build("drive", "v3", credentials=creds)
     
     file_metadata = {
-        "name": target,
+        "name": target + ".zip",
         "parents": [BUILDS_GOOGLEDRIVE_PATH]
     }
 
